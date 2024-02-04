@@ -42,7 +42,7 @@ public class CourseServiceImpl implements CourseService{
 
 	@Override
 	public Course addCourse(Course course) {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method stubb
 		list.add(course);
 		return course;
 	}
