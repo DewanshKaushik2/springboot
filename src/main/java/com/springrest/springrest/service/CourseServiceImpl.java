@@ -2,6 +2,8 @@ package com.springrest.springrest.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
@@ -42,9 +44,30 @@ public class CourseServiceImpl implements CourseService{
 
 	@Override
 	public Course addCourse(Course course) {
-		// TODO Auto-generated method stubb
+		// TODO Auto-generated method stub
 		list.add(course);
 		return course;
+	}
+
+
+	@Override
+	public Course updateCourse(Course course) {
+		list.forEach(new Consumer<Course>() {
+			@Override
+			public void accept(Course t) {
+				if(t.getId() == course.getId()) {
+				t.setTitle(course.getTitle());
+				t.setDescription(t.getDescription());
+			}
+		}});
+		return course;
+	}
+
+
+	@Override
+	public void deleteCourse(long parseLong) {
+		// TODO Auto-generated method stub
+		list=this.list.stream().filter(e->e.getId()!=parseLong).collect(Collectors.toList());
 	}
 
 	
