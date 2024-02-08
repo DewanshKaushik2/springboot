@@ -1,17 +1,14 @@
 package com.springrest.springrest.entity;
 
-
-
 import jakarta.persistence.*;
 
 import com.springrest.springrest.listeners.ProductListener;
-
 
 @Entity
 @Table(name = "products")
  @EntityListeners(value = ProductListener.class)
 public class Product {
-	    @Column(name = "id")
+	 @Column(name = "id")
 	    @Id
 	    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	    private int productId;
