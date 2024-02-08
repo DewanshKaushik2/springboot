@@ -2,19 +2,23 @@ package com.springrest.springrest.service;
 
 import java.util.List;
 
-import com.springrest.springrest.entity.Course;
+import org.springframework.stereotype.Service;
 
+import com.springrest.springrest.entity.Product;
+
+
+@Service
 public interface CourseService {
 	
-public List<Course> getCourses();
+public List<Product> getCourses();
 
-public Course getCourse(long courseId);
+public Product getCourse(Integer courseId);
 
-public Course addCourse(Course course);
+public Product addCourse(Product course);
 
-public Course updateCourse(Course course);
+public Product updateCourse(Product course);
 
-public void deleteCourse(long parseLong);
+public void deleteCourse(Integer parseLong);
 
 
 

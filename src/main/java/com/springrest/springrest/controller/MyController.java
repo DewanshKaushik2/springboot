@@ -11,12 +11,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.springrest.springrest.entity.Course;
+import com.springrest.springrest.entity.Product;
 import com.springrest.springrest.service.CourseService;
 
 @RestController
+@RequestMapping("/home")
 public class MyController {
 	// last time = 55:05
 	@Autowired
@@ -29,23 +30,23 @@ public class MyController {
 
 	// get the courses 
 	@GetMapping("/courses")
-	public List<Course> getCourses(){
+	public List<Product> getCourses(){
 		return this.courseService.getCourses();
 	}
 	
 	@GetMapping("/course/{courseId}")
-	public Course getCourse(@PathVariable String courseId) {
-		return this.courseService.getCourse(Long.parseLong(courseId));
+	public Product getCourse(@PathVariable String courseId) {
+		return this.courseService.getCourse(Integer.parseInt(courseId));
 	}
 	
 	@PostMapping("/courses")
-	public Course addCourse(@RequestBody Course course) {
+	public Product addCourse(@RequestBody Product course) {
 		return courseService.addCourse(course);
 	}
 	
 	//update course using PUT request
 	@PutMapping("/courses")
-	public Course updateCourse(@RequestBody Course course) {
+	public Product updateCourse(@RequestBody Product course) {
 		return courseService.updateCourse(course);
 	}
 	
@@ -53,7 +54,7 @@ public class MyController {
 	@DeleteMapping("courses/{courseId}")
 	public ResponseEntity<HttpStatus> deleteCourse(@PathVariable String courseId) {
 		try {
-			courseService.deleteCourse(Long.parseLong(courseId));
+			courseService.deleteCourse(Integer.parseInt(courseId));
 			return new ResponseEntity<>(HttpStatus.OK);
 		}catch(Exception e) {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
